@@ -42,7 +42,11 @@ public class Main {
         mbs.registerMBean(resourceServer, name);
         Server server = new Server(port);
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(new ResourcePageServlet(testResource)), ResourcePageServlet.PAGE_URL);
+
+        ResourcePageServlet servlet = new ResourcePageServlet(testResource);
+        servlet.setController(resourceServer);
+        context.addServlet(new ServletHolder(servlet), ResourcePageServlet.PAGE_URL);
+
         ResourceHandler resource_handler = new ResourceHandler();
         resource_handler.setDirectoriesListed(true);
         resource_handler.setResourceBase("static");

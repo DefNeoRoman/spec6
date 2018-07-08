@@ -32,6 +32,7 @@ public class SaxHandler extends DefaultHandler {
     }
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
+
         if (element != null) {
             String value = new String(ch, start, length);
             System.out.println(element + " = " + value);

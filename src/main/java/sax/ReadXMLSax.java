@@ -12,7 +12,7 @@ public class ReadXMLSax {
 
             SaxHandler handler = new SaxHandler();
 
-            saxParser.parse(getClass().getResource("/"+xmlFile).getFile(), handler);
+            saxParser.parse(xmlFile, handler);
 
 
             return handler.getObject();

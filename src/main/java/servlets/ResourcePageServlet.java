@@ -1,5 +1,6 @@
 package servlets;
 
+import resources.ResourceServerController;
 import resources.TestResource;
 import sax.ReadXMLSax;
 
@@ -15,7 +16,7 @@ public class ResourcePageServlet extends HttpServlet {
     public static final String PAGE_URL = "/resources";
     private ReadXMLSax readXMLSax;
     private TestResource testResource;
-
+    private ResourceServerController controller;
     public ResourcePageServlet(TestResource testResource) {
         this.testResource = testResource;
         readXMLSax = new ReadXMLSax();
@@ -49,11 +50,18 @@ public class ResourcePageServlet extends HttpServlet {
 
     }
 
+    public void setController(ResourceServerController controller) {
+        this.controller = controller;
+    }
+
     public TestResource getTestResource() {
         return testResource;
     }
 
     public void setTestResource(TestResource testResource) {
-        this.testResource = new TestResource(testResource.getName(),testResource.getAge());
+        TestResource testResource1 = new TestResource(testResource.getName(), testResource.getAge());
+
+        controller.setTestResource(testResource1);
+
     }
 }
